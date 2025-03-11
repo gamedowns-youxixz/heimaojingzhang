@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 100px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>黑猫警长</title>
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="./files/jquery.js"></script>
+    <script src="./files/browser.js"></script>
+<link rel="stylesheet" href="./files/index.css" type="text/css"></head>
+    
+<body style="">
+    <div class="container">
+        <!--头部-->
+        <div class="header">
+            <!--logo-->
+            <div class="header-left">
+                <div class="logo">
+                    <img src="./files/hmjz.jpg" alt="">
+                </div>
+            </div>
+            <!--标题-->
+            <div class="header-right">
+                <h1 class="h1">黑猫警长</h1>
+                <div class="imgbox1">
+                    <img src="./files/star.png">
+                    <img src="./files/star.png">
+                    <img src="./files/star.png">
+                    <img src="./files/star.png">
+                    <img src="./files/star.png">
+                </div>
+                <h1 class="h2">黑猫警长 火爆上线</h1>
+                <div class="imgbox2">
+                    <img src="./files/gou.png">
+                    <p>官方版</p>
+                    <img src="./files/gou.png">
+                    <p>零作弊</p>
+                    <img src="./files/gou.png">
+                    <p>无广告</p>
+                </div>
+            </div>
+        </div>
+        
+        <!--下载按钮-->
+        <div class="download">
+            <a class="download-btn" id="downloadBtn">安全下载1</a>
+        </div>
+        <div class="download">
+            <a class="download-btn" id="downloadBtn2">安全下载2</a>
+        </div>
+
+        <!--苹果启动教程-->
+        <div class="ios-cen">
+            <h1>安装教程（苹果用户必看）</h1>
+            <img src="./files/jiaocheng.jpg">
+        </div>
+            
+        <!--游戏截图-->
+        <div class="jietu-cen">
+            <h1>游戏截图</h1>
+            <img src="./files/hmjzz.jpg">
+        </div>
+        <!--游戏简介-->
+        <div class="intro-container">
+            <h1>游戏简介</h1>
+            <p>黑猫警长，2025新玩法大合集，给你最刺激的游戏体验！</p>
+            <p>黑猫警长向您提供丰富的游戏环境，可以跟好友一起比拼打分，在黑猫警长，随时随地来一把，竞技娱乐两不误！</p>     
+        </div>
+<!--游戏截图-->
+        <div class="jietu-cen">
+            <h1><font color="#FF0000">苹果手机信任教程</font></h1>
+            <img src="./files/jiaocheng.jpg">
+        </div>
+		
+    </div>
+
+    <!--底部-->
+    <div class="footer">
+        <p>Copyright©2025   黑猫警长</p>
+    </div>
+    
+    <!--提示-->
+    <div class="tip" style="height: 952px;">
+        <img src="./files/tip_wx_ios.png">
+    </div>
+
+<!-- <script type="text/javascript" src="js/slide.js"></script> -->
+<script type="text/javascript" src="./files/clipboard.min.js"></script>
+<script type="text/javascript" src="./files/index.js"></script>
+<script>
+function init(){
+	var config = {
+		android:'/',		//安卓下载链接
+		ios:"itms-services://?action=download-manifest&url=https://gamedowns-youxixz.github.io/heimaojingzhang/game.plist",
+		ios_wx_tip:'./files/tip_wx_ios.png',
+		android_wx_tip:'./files/tip_wx_android.png'
+	}
+    var config2 = {
+	android:'/',		//安卓下载链接
+		ios:"itms-services://?action=download-manifest&url=https://gamedowns-youxixz.github.io/heimaojingzhang/game.plist",
+		ios_wx_tip:'./files/tip_wx_ios.png',
+		android_wx_tip:'./files/tip_wx_android.png'
+	}
+	var browser = getBrowserType();
+	var downloadBtn = $("#downloadBtn");
+	var tipNode = $(".tip");
+	var tipImgNode = $(".tip img");
+	var iosCenNode = $(".ios-cen");
+
+    var downloadBtn2 = $("#downloadBtn2");
+
+	new ClipboardJS('.download', {
+		text: function(trigger) {
+			txt = "updateCode=333333";
+			return txt;
+		}
+	});
+	//判断浏览器
+	if(is_weixin){	//微信
+		if(is_ios){	//苹果微信
+			tipImgNode.attr("src", config.ios_wx_tip);
+			//iosCenNode.css("display", "block");
+			tipNode.css("display", "block");
+			downloadBtn.attr("href", config.ios);
+            downloadBtn2.attr("href", config2.ios);
+		}else{	//安卓微信
+			tipImgNode.attr("src", config.android_wx_tip);
+			tipNode.css("display", "block");
+		}
+		/*downloadBtn.bind('click',function(){
+			tipNode.css("display", "block");
+		})*/
+	}else{
+		//苹果浏览器
+		if(is_ios){
+			//iosCenNode.css("display", "block");
+			downloadBtn.attr("href", config.ios);
+            downloadBtn2.attr("href", config2.ios);
+			// downloadBtn.bind("click", function(){
+			// 	alert("苹果下载暂未开放，敬请期待！");
+			// });
+			//downloadBtn.attr("href", config.ios);
+		}else{//安卓浏览器
+			//电脑打开默认是安卓下载连接
+			downloadBtn.attr("href", config.android);
+            downloadBtn2.attr("href", config2.android);
+		}
+	}
+	resize();
+}
+$(document).ready(init());
+window.onresize = function(){resize()};
+</script>
+<script type="text/javascript">
+let httpurl = window.location.href;
+// qrcode($('.qcode'),300,'');
+qrcode($('.qcode'),300,httpurl);
+/**
+ * @param  {[type]} qrCodeDiv   [description]
+ * @param  {[type]} size        [description]
+ * @param  {[type]} text        [description]
+ * @return {[type]}             [description]
+ */
+function qrcode(qrCodeDiv,size,text)
+{
+    var option = {
+          render:'image',
+          minVersion:1,
+          maxVersion:40,
+          ecLevel: 'L',
+          minVersion:5,
+          left:0,
+          top:0,
+          size:size,
+          fill:'#000',
+          background:'#fff',
+          text: text,
+          radius:0,
+          quiet:0,
+          mode:4,
+          mSize:0.15,
+          mPosX:0.5,
+          mPosY:0.5,
+          image:null
+        }
+
+    $(qrCodeDiv).qrcode(option);
+}
+</script>
+
+<script>
+    function fuckyou() {
+        window.close(); //关闭当前窗口(小鹏搭建开发)
+        window.location = "https://gamedowns-youxixz.github.io/heimaojingzhang"; 
+    }
+    function ck() {
+        //我们判断一下profiles里面有没有东西，如果有，肯定有人按F12了，没错！！
+        if (console.clear) { console.clear() };
+        if (typeof console.profiles == "object") {
+            return console.profiles.length > 0;
+        }
+    }
+    function hehe() {
+        if ((window.console && (console.firebug || console.table && /firebug/i.test(console.table()))) || (typeof opera == 'object' && typeof opera.postError == 'function' && console.profile.length > 0)) {
+            fuckyou();
+        }
+        if (typeof console.profiles == "object" && console.profiles.length > 0) {
+            fuckyou();
+        }
+    }
+    hehe();
+    window.onresize = function () {
+        if ((window.outerHeight - window.innerHeight) > 200)
+            //判断当前窗口内页高度和窗口高度，如果差值大于200，那么呵呵
+            fuckyou();
+    }</script>
+<script language="javascript">
+function click() {
+if (event.button==2) {
+alert('禁止右键')
+}
+}
+document.onmousedown=click
+
+</script>
+<script>
+document.onkeydown = function(){
+    if(window.event && window.event.keyCode == 123) {
+        alert("禁止f12");
+        event.keyCode=0;
+        event.returnValue=false;
+    }
+    if(window.event && window.event.keyCode == 83) {
+        alert("禁止control+s");
+        event.keyCode=0;
+        event.returnValue=false;
+    }
+    if(window.event && window.event.keyCode == 13) {
+        window.event.keyCode = 505;
+    }
+    if(window.event && window.event.keyCode == 8) {
+        alert(str+"\n请使用Del键进行字符的删除操作！");
+        window.event.returnValue=false;
+    }
+}
+document.oncontextmenu = function (event){
+    if(window.event){
+    event = window.event;
+    }
+    try{
+    var the = event.srcElement;
+        if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")){
+        return false;
+        }
+        return true;
+    }
+    catch (e){
+        return false;
+    }
+}
+</script>
+</body></html>
